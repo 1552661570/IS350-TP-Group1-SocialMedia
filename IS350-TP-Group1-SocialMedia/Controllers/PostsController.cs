@@ -60,6 +60,7 @@ namespace IS350_TP_Group1_SocialMedia.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ContentModel model)
         {
+            TempData["currentUserName"] = "Haoze Xinchen";
             if (ModelState.IsValid)
             {
                 if (ModelState.IsValid)
