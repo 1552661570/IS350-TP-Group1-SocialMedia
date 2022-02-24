@@ -1,0 +1,54 @@
+﻿@model IS350_TP_Group1_SocialMedia.Models.Post
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Post</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="postID" />
+            <div class="form-group">
+                <label asp-for="userName" class="control-label"></label>
+                <input asp-for="userName" class="form-control" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="content" class="control-label"></label>
+                <input asp-for="content" class="form-control" />
+                <span asp-validation-for="content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sendDate" class="control-label"></label>
+                <input asp-for="sendDate" class="form-control" />
+                <span asp-validation-for="sendDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="picturePath" class="control-label"></label>
+                <input asp-for="picturePath" class="form-control" />
+                <span asp-validation-for="picturePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="thumbUpNum" class="control-label"></label>
+                <input asp-for="thumbUpNum" class="form-control" />
+                <span asp-validation-for="thumbUpNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
