@@ -10,7 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+ @*   <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.userName)
@@ -29,11 +29,15 @@
             </th>
             <th></th>
         </tr>
-    </thead>
+    </thead>*@
     <tbody>
 @foreach (var item in Model) {
     var picturePath = "~/images/" + (item.picturePath);
-        <tr>
+        @*<tr>
+            <td>
+                <img class="imgScale" src="@picturePath" asp-append-version="true"/>
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.userName)
             </td>
@@ -43,9 +47,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.sendDate)
             </td>
-            <td>
-                <img class="imgScale" src="@picturePath" asp-append-version="true"/>
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.thumbUpNum)
                 <a asp-action="ThumbUp" asp-route-id="@item.postID">ThumbUp</a>
@@ -61,7 +63,68 @@
                 }
                 
             </td>
+        </tr>*@
+
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.userName)
+            </td>
         </tr>
+
+        
+        <tr>
+            <td colspan="4">
+                <img width = "100%"  src="@picturePath" asp-append-version="true"/>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td width = "70%">
+                @Html.DisplayFor(modelItem => item.thumbUpNum)
+                <a asp-action="ThumbUp" asp-route-id="@item.postID">ThumbUp</a>
+            </td>
+      
+             <td>
+                @{
+                if(TempData.Peek("currentUserName").ToString() == item.userName)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.postID">Edit</a>
+                }  
+                }
+            </td>
+
+             <td>
+                @{
+                if(TempData.Peek("currentUserName").ToString() == item.userName)
+                {
+                    <a asp-action="Details" asp-route-id="@item.postID">Details</a>
+                }
+                }
+                
+            </td>
+             <td>
+                @{
+                if(TempData.Peek("currentUserName").ToString() == item.userName)
+                {
+                    <a asp-action="Delete" asp-route-id="@item.postID">Delete</a>
+                    
+                }
+                }
+                
+            </td>
+
+        </tr>
+
+        <tr>
+            <td colspan="4" height = 30px>
+                
+            </td>
+        </tr>
+         
+       
 }
     </tbody>
 </table>

@@ -72,5 +72,13 @@ body {
 
 .imgScale {
     height: 200px;
-    width: auto;
+    width: 100%;
 }
+
+/*table {
+    border: 1px solid;
+}
+
+table tr td{
+    border : 1px solid;
+}*/
