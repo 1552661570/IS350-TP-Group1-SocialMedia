@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using IS350_TP_Group1_SocialMedia.Data;
 using IS350_TP_Group1_SocialMedia.Models;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace IS350_TP_Group1_SocialMedia.Controllers
 {
@@ -184,11 +185,15 @@ namespace IS350_TP_Group1_SocialMedia.Controllers
         public async Task<IActionResult> ThumbUp(int id)
         {
             var post = _context.Post.FirstOrDefault(e => e.postID == id);
-            post.thumbUpNum += 1;
+            String temp = (post.thumbUpNum += 1).ToString();
             _context.Update(post);
             await _context.SaveChangesAsync();
             isThumbed = true;
-            return RedirectToAction(nameof(Index));
+            return new PartialViewResult
+            {
+                ViewName = "ThumbsUpPartial",
+                ViewData = new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Message", temp } }
+            };
         }
     }
 }
