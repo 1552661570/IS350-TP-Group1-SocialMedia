@@ -3,7 +3,7 @@
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
-@if (TempData.Peek("currentUserName").ToString() != "")
+@if (TempData.Peek("currentUserName") !=  null)
 {
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @TempData.Peek("currentUserName").ToString()!</a>

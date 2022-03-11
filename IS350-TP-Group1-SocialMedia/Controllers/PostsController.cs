@@ -202,7 +202,7 @@ namespace IS350_TP_Group1_SocialMedia.Controllers
         }
         public IActionResult Logout()
         {
-            TempData["currentUserName"] = "";
+            TempData["currentUserName"] = null;
             return RedirectToAction(nameof(Index));
         }
     }
