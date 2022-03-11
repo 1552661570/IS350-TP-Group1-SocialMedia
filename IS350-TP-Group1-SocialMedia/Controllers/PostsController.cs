@@ -29,7 +29,7 @@ namespace IS350_TP_Group1_SocialMedia.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            TempData["currentUserName"] = "Haoze Xinchen";
+            //TempData["currentUserName"] = "Haoze Xinchen";
             return View(await _context.Post.ToListAsync());
         }
 
@@ -194,6 +194,16 @@ namespace IS350_TP_Group1_SocialMedia.Controllers
                 ViewName = "ThumbsUpPartial",
                 ViewData = new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "Message", temp } }
             };
+        }
+        public IActionResult Login()
+        {
+            TempData["currentUserName"] = "Haoze Xinchen";
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Logout()
+        {
+            TempData["currentUserName"] = "";
+            return RedirectToAction(nameof(Index));
         }
     }
 }
