@@ -9,26 +9,7 @@
 </p>
 <h2>Most view</h2>
 <table class="table">
- @*   <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.userName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.sendDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.picturePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.thumbUpNum)
-            </th>
-            <th></th>
-        </tr>
-    </thead>*@
+
     <tbody>
 @foreach (var item in Model) {
     var picturePath = "~/images/" + (item.picturePath);
@@ -63,9 +44,9 @@
                 
             </td>
         </tr>*@
+        
 
-
-
+        
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.userName)
@@ -81,10 +62,10 @@
 
 
         <tr>
-            <td width = "70%">
+            <td width = "20%">
                 <div id="@("content_" + item.postID)">@Html.DisplayFor(modelItem => item.thumbUpNum)</div>
-                <a asp-action="ThumbUp" asp-route-id="@item.postID" data-ajax-method="POST" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#@("content_" + item.postID)"><input type = "image" src="https://img-blog.csdnimg.cn/img_convert/022e3b83b7db208d184f44314d7a690f.png" width="20" height="20" ></a>            </td>
-      
+                <a asp-action="ThumbUp" asp-route-id="@item.postID" data-ajax-method="POST" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#@("content_" + item.postID)"><input type = "image" src="https://img-blog.csdnimg.cn/img_convert/022e3b83b7db208d184f44314d7a690f.png" width="20" height="20" ></a>            
+                 </td>
              <td>
                 @{
                 if(TempData.Peek("currentUserName") != null && TempData.Peek("currentUserName").ToString() == item.userName)
@@ -99,7 +80,7 @@
                 if(TempData.Peek("currentUserName") != null && TempData.Peek("currentUserName").ToString() == item.userName)
                 {
                     <a asp-action="Details" asp-route-id="@item.postID">Details</a>
-                }
+                }   
                 }
                 
             </td>
@@ -107,22 +88,33 @@
                 @{
                 if(TempData.Peek("currentUserName") != null && TempData.Peek("currentUserName").ToString() == item.userName)
                 {
-                    <a asp-action="Delete" asp-route-id="@item.postID">Delete</a>
-                    
-                }
-                }
-                
-            </td>
+                            <a asp-action="Delete" asp-route-id="@item.postID">Delete</a>
 
-        </tr>
+                        }
+                    }
 
-        <tr>
-            <td colspan="4" height = 30px>
-                
-            </td>
-        </tr>
-         
-       
-}
+                </td>
+
+            </tr>
+           
+        
+            <tr>
+                <td colspan="4" height = 50px>
+                      @{if (@item.postID < 500)
+            {
+                <span><b>Kepei: Hello!</b></span>
+                <span><b>Xinchen: Hi!</b></span>
+                 <span><b>Qihong: Nice picture!</b></span>
+               <div> <textarea id="texthelpblock" class="form-control" rows="3">
+                        </textarea>
+                        <p class="text-right"><button type="button" class="btn btn-primary btn-xs">Submit</button></p></div>
+                        }
+                       
+                    }
+                </td>
+            </tr>
+            
+        }
     </tbody>
+
 </table>
